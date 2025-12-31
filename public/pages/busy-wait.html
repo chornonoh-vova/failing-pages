@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Busy Wait Test</title>
+</head>
+<body>
+    <h1>Busy Wait - Synchronous delay</h1>
+    <p>Blocking for 200+ seconds...</p>
+    <script>
+        // Synchronous sleep/busy wait
+        const start = Date.now();
+        while(Date.now() - start < 200000) {
+            // Block for 200+ seconds
+        }
+        document.body.innerHTML += '<p>Finally done!</p>';
+    </script>
+</body>
+</html>

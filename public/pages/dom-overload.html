@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Overload Test</title>
+</head>
+<body>
+    <h1>DOM Overload - Creating millions of elements</h1>
+    <div id="container"></div>
+    <script>
+        // Create millions of DOM elements
+        const container = document.getElementById('container');
+        for(let i = 0; i < 5000000; i++) {
+            const div = document.createElement('div');
+            div.innerHTML = \`Element \${i}\`;
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>

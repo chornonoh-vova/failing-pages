@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heavy Computation Test</title>
+</head>
+<body>
+    <h1>Heavy Computation - Long synchronous operation</h1>
+    <p>Processing heavy calculations...</p>
+    <script>
+        // Heavy synchronous computation
+        function heavyWork() {
+            let result = 0;
+            for(let i = 0; i < 10000000000; i++) {
+                result += Math.sqrt(i) * Math.random();
+            }
+            return result;
+        }
+        heavyWork();
+    </script>
+</body>
+</html>

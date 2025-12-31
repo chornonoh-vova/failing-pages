@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Infinite Loop Test</title>
+</head>
+<body>
+    <h1>Infinite Loop - Renderer will hang</h1>
+    <p>This page will cause a renderer timeout.</p>
+    <script>
+        // Infinite loop blocks the renderer completely
+        while(true) {
+            // Do nothing, just hang forever
+        }
+    </script>
+</body>
+</html>
