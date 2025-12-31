@@ -1,5 +1,6 @@
 import { env } from "node:process";
 import { join, sep } from "node:path";
+import { STATUS_CODES } from "node:http";
 import { access, constants, glob } from "node:fs/promises";
 
 import express from "express";
@@ -47,11 +48,36 @@ app.get("/pages/:page", async (req, res) => {
   }
 });
 
+app.get("/http", (_, res) => {
+  const available = Object.entries(STATUS_CODES).filter(
+    ([code]) =>
+      (code >= "200" && code <= "299") ||
+      (code >= "400" && code <= "499") ||
+      (code >= "500" && code <= "599"),
+  );
+
+  res.status(200).send(`<html>
+<body>
+<h1>Available HTTP statuses</h1>
+<ul>
+${available
+  .map(([code, description]) => {
+    return `<li><a href="/http/${code}">${description}</a></li>`;
+  })
+  .join("\n")}
+</ul>
+</body>
+</html>`);
+});
+
 app.get("/http/:status", (req, res) => {
-  const status = parseInt(req.params.status);
+  const statusCode = parseInt(req.params.status);
+  const statusDescription = STATUS_CODES[statusCode];
   res
-    .status(status)
-    .send(`<html><body><h1>HTTP status: ${status}</h1></body></html>`);
+    .status(statusCode)
+    .send(
+      `<html><body><h1>HTTP status: ${statusCode}</h1><p>${statusDescription}</p></body></html>`,
+    );
 });
 
 app.listen(port, () => {
